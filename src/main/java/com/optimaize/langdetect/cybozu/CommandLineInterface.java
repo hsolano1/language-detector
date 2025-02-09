@@ -18,7 +18,6 @@ package com.optimaize.langdetect.cybozu;
 
 import com.optimaize.langdetect.frma.LangProfileWriter;
 import com.optimaize.langdetect.cybozu.util.LangProfile;
-import com.google.common.base.Optional;
 import com.optimaize.langdetect.DetectedLanguage;
 import com.optimaize.langdetect.LanguageDetector;
 import com.optimaize.langdetect.LanguageDetectorBuilder;
@@ -32,8 +31,20 @@ import com.optimaize.langdetect.text.TextObjectFactory;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * LangDetect Command Line Interface.
@@ -286,7 +297,7 @@ public class CommandLineInterface {
     private LanguageDetector makeDetector() throws IOException {
         double alpha = getParamDouble("alpha", DEFAULT_ALPHA);
         String profileDirectory = requireParamString("directory") + "/";
-        Optional<Long> seed = Optional.fromNullable(getParamLongOrNull("seed"));
+        Optional<Long> seed = Optional.ofNullable(getParamLongOrNull("seed"));
 
         List<LanguageProfile> languageProfiles = new LanguageProfileReader().readAll(new File(profileDirectory));
 

@@ -16,11 +16,11 @@
 
 package com.optimaize.langdetect.i18n;
 
-import com.google.common.base.Optional;
 import com.google.common.base.Splitter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A language-detector implementation of a Locale, similar to the java.util.Locale.
@@ -106,8 +106,8 @@ public final class LdLocale {
             }
         }
         assert language != null;
-        if (script==null) script = Optional.absent();
-        if (region==null) region = Optional.absent();
+        if (script==null) script = Optional.empty();
+        if (region==null) region = Optional.empty();
         return new LdLocale(language, script, region);
     }
 
