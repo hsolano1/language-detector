@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <configuration>
 
-    <appender name="stderr" class="ch.qos.logback.core.ConsoleAppender">
-        <Target>System.out</Target>
-        <encoder>
-            <pattern>%d{yyyy-MM-dd/HH:mm:ss.SSS/zzz} [%t] %-5p %m%n</pattern>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{yyyy.MM.dd HH:mm:ss.SSS} Thread[%thread] %logger{20} - %msg%n</Pattern>
+            <charset>UTF-8</charset>
         </encoder>
-        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>INFO</level>
-        </filter>
     </appender>
 
 
     <root level="ERROR">
-        <appender-ref ref="stderr"/>
+        <appender-ref ref="STDOUT"/>
     </root>
 
 </configuration>

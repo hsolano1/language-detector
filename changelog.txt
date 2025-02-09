@@ -1,0 +1,13 @@
+This is a fork of the project Optimaize Language Detector https://github.com/optimaize/language-detector
+
+License Apache 2.0 remains the same
+
+Depending on the changes the project might be rename in the future to establish a clear difference.
+
+Original version 0.7-SNAPSHOT
+
+02/09/2025 0.8-SNAPSHOT
+
+    * pgrading dependencies to address security vulnerabilities reported in Guava, Logback.
+    * Compiling with Java 11
+    * Upgrading testing dependencies
