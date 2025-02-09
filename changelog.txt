@@ -12,3 +12,4 @@ Original version 0.7-SNAPSHOT
     * Compiling with Java 11
     * Upgrading testing dependencies
     * Gradually replacing the use of Guava classes with built-in JDK alternatives.
+    * Replacing cobertura with Jacoco as the former does not support Java 11

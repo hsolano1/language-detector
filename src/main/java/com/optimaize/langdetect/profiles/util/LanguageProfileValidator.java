@@ -31,12 +31,10 @@ import com.optimaize.langdetect.text.TextObject;
 import com.optimaize.langdetect.text.TextObjectFactory;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Performs k-fold cross-validation.
@@ -57,7 +55,7 @@ public class LanguageProfileValidator {
     /**
      * All loaded language profiles.
      */
-    private final List<LanguageProfile> languageProfiles = new ArrayList<>();
+    private /*final*/ List<LanguageProfile> languageProfiles = new ArrayList<>();
     private LanguageProfileBuilder languageProfileBuilder;
     private TextObject inputSample;
 
@@ -175,11 +173,11 @@ public class LanguageProfileValidator {
             List<DetectedLanguage> detectedLanguages = languageDetector.getProbabilities(testSample);
 
             try{
-                DetectedLanguage kResult = Iterables.find(detectedLanguages, new Predicate<DetectedLanguage>() {
-                    public boolean apply(DetectedLanguage language) {
-                        return language.getLocale().getLanguage().equals(languageProfile.getLocale().getLanguage());
-                    }
-                });
+                DetectedLanguage kResult = detectedLanguages
+                        .stream()
+                        .filter(language -> Objects.equals(language.getLocale().getLanguage(), languageProfile.getLocale().getLanguage()))
+                        .findFirst()
+                        .orElseThrow();
 
                 probabilities.add(kResult.getProbability());
                 System.out.println("Probability: " + kResult.getProbability());
